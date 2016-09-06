@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MenuItem;
 
 import com.example.administrator.fastandroid.base.BaseActivity;
 import com.example.administrator.fastandroid.contansts.ConstantValues;
@@ -43,5 +44,10 @@ public class WelcomeActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         handler.removeMessages(0);
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
     }
 }

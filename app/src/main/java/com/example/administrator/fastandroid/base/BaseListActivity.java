@@ -3,13 +3,13 @@ package com.example.administrator.fastandroid.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.fastandroid.PullRecycler;
 import com.example.administrator.fastandroid.R;
 import com.example.administrator.fastandroid.layoutmanager.ILayoutManager;
+import com.example.administrator.fastandroid.layoutmanager.MyLinearLayoutManager;
 import com.example.administrator.fastandroid.layoutmanager.MyStaggeredGridLayoutManager;
 import com.example.administrator.fastandroid.widgets.DividerItemDecoration;
 
@@ -38,10 +38,10 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullRe
 
     @Override
     protected void setUpData() {
-        adapter = new BaseListAdater();
+        adapter = new ListAdapter();
         recycler.setOnrefreshListener(this);
         recycler.setLayoutManager(getLayoutManager());
-        adapter = new BaseListAdater();
+        recycler.addItemDecoration(getItemDecoration());
         recycler.setAdapter(adapter);
     }
 
@@ -56,73 +56,36 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullRe
 
 
     protected ILayoutManager getLayoutManager() {
-        return new MyStaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
+        return new MyLinearLayoutManager(getApplicationContext());
     }
 
-
-    public class BaseListAdater extends RecyclerView.Adapter<BaseViewHolder> {
-
-        private static final int VIEW_TYPE_MORE_FOOTER = 1024;
-        private boolean isShowLoadMoreFooter;
-
+    public class ListAdapter extends BaseListAdater {
         @Override
-        public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            //return  getViewHolder(parent,viewType);
-            if (viewType == VIEW_TYPE_MORE_FOOTER) {
-                return getLoadMoreFooter(parent);
-            }
+        protected BaseViewHolder onCreateNormalViewHolder(ViewGroup parent, int viewType) {
             return getViewHolder(parent, viewType);
         }
 
-        //显示【加载更多】布局
-        private BaseViewHolder getLoadMoreFooter(ViewGroup parent) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.load_more_footer, parent, false);
-            return new LoadMoreFooterViewHolder(view);
-        }
-
         @Override
-        public void onBindViewHolder(BaseViewHolder holder, int position) {
-            // holder.onBindViewHolder(position);
-            if (isShowLoadMoreFooter && position == getItemCount() - 1) {
-                if (holder.itemView.getLayoutParams() instanceof StaggeredGridLayoutManager.LayoutParams) {
-                    StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) holder.itemView.getLayoutParams();
-                    params.setFullSpan(true);
-                }
-            }
-            holder.onBindViewHolder(position);
 
-        }
-
-        @Override
-        public int getItemCount() {
-
-            // return mDataList!=null ? mDataList.size(): 0;
-            return mDataList != null ? mDataList.size() + (isShowLoadMoreFooter ? 1 : 0) : 0;
-        }
-
-        @Override
-        public int getItemViewType(int position) {
-            if (isShowLoadMoreFooter && position == getItemCount() - 1) {
-                return VIEW_TYPE_MORE_FOOTER;
-            }
+        protected int getDataViewType(int position) {
             return getItemType(position);
         }
 
-       //是否显示加载更多布局
-        public void showLoadMoreFooter(boolean isShow) {
-            isShowLoadMoreFooter = isShow;
-            if (isShow) {
-                notifyItemInserted(getItemCount());
-            } else {
-                notifyItemRemoved(getItemCount());
-            }
+        @Override
+        protected int getDataCount() {
+            return mDataList != null ? mDataList.size() : 0;
+
         }
 
-        //是否显示底部布局
-        public boolean isFooterView(int position) {
-            return isShowLoadMoreFooter && position == getItemCount() - 1;
+        protected int getItemType(int position) {
+            return 0;
         }
+
+
     }
+
+
+
 
     protected int getItemType(int position) {
         return 0;
@@ -138,6 +101,11 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullRe
 
         @Override
         public void onBindViewHolder(int position) {
+
+        }
+
+        @Override
+        public void onItemClick(View view, int position) {
 
         }
     }

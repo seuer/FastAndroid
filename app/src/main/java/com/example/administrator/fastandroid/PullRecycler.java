@@ -7,7 +7,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
-import com.example.administrator.fastandroid.base.BaseListActivity;
+import com.example.administrator.fastandroid.base.BaseListAdater;
 import com.example.administrator.fastandroid.layoutmanager.ILayoutManager;
 
 /**
@@ -17,7 +17,7 @@ import com.example.administrator.fastandroid.layoutmanager.ILayoutManager;
 public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRefreshListener {
     private  SwipeRefreshLayout swipeRefreshLayout;
     private RecyclerView recyclerView;
-    private BaseListActivity.BaseListAdater adapter;
+    private BaseListAdater adapter;
     /**
      * 下拉刷新
      */
@@ -70,7 +70,7 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
         }
     }
 
-    public void setAdapter(BaseListActivity.BaseListAdater adapter){
+    public void setAdapter(BaseListAdater adapter){
         this.adapter=adapter;
         recyclerView.setAdapter(adapter);
     }
@@ -107,7 +107,7 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
                 super.onScrolled(recyclerView, dx, dy);
                 if(mCurrentState==ACTION_IDLE && isLoadMoreEnable && checkLoadMore() ){
                     mCurrentState=ACTION_PULL_TO_REFRESH;
-                    adapter.showLoadMoreFooter(true);
+                    adapter.onLoadMoreStateChanged(true);
                     swipeRefreshLayout.setEnabled(false);
                     listener.onRefresh(ACTION_LOAD_MORE_REFRESH);
 
@@ -157,7 +157,7 @@ public class PullRecycler extends FrameLayout implements SwipeRefreshLayout.OnRe
                 break;
             case ACTION_LOAD_MORE_REFRESH:
                 //禁止加载更多
-                adapter.showLoadMoreFooter(false);
+                adapter.onLoadMoreStateChanged(false);
                  if(isPullToRefresh){
                      swipeRefreshLayout.setEnabled(true);
                  }

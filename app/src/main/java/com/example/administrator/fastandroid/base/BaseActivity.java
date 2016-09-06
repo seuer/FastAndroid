@@ -18,7 +18,7 @@ import com.example.administrator.fastandroid.contansts.ConstantValues;
  * Created by Administrator
  * on 2016/8/1 17:01
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements Toolbar.OnMenuItemClickListener {
 
     protected Toolbar toolbar;
     protected TextView toolbar_title;
@@ -106,6 +106,19 @@ public abstract class BaseActivity extends AppCompatActivity {
             toolbar_title.setText(titleResId);
         }
     }
+
+    protected void setUpMenu(int menuId) {
+        if (toolbar != null) {
+            toolbar.getMenu().clear();
+            if (menuId > 0) {
+                toolbar.inflateMenu(menuId);
+                toolbar.setOnMenuItemClickListener(this);
+            }
+        }
+    }
+
+
+
 
     protected void kickOut() {
         Intent intent = new Intent(this, HomeActivity.class);
