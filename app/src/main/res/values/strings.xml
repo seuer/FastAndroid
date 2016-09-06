@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FastAndroid</string>
+    <string name="activity_home">主界面</string>
+    <string name="activity_login">登录</string>
+    <string name="activity_welcome">欢迎</string>
+    <string name="activity_profile">简介你大爷</string>
+    <string name="activity_sample">samplelist</string>
+</resources>
