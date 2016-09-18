@@ -102,7 +102,7 @@ public class SampleListActivity extends BaseListActivity<String> {
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        return false;
+        return super.onMenuItemClick(item);
     }
 }
 

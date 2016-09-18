@@ -37,10 +37,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
 
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        return false;
-    }
 
     @Override
     public void onClick(View v) {
@@ -49,5 +45,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
             startActivity(new Intent(this, HomeActivity.class));
             finish();
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return super.onMenuItemClick(item);
     }
 }

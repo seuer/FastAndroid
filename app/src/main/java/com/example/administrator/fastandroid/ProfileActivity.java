@@ -27,6 +27,6 @@ public class ProfileActivity extends BaseActivity {
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        return false;
+        return super.onMenuItemClick(item);
     }
 }

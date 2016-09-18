@@ -3,6 +3,7 @@ package com.example.administrator.fastandroid.base;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -108,5 +109,10 @@ public abstract class BaseListActivity<T> extends BaseActivity implements PullRe
         public void onItemClick(View view, int position) {
 
         }
+    }
+
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return super.onMenuItemClick(item);
     }
 }

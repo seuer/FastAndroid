@@ -12,20 +12,20 @@
         <activity
             android:name=".HomeActivity"
             android:launchMode="singleTask">
-          <!--  <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity android:name=".ProfileActivity"></activity>
         <activity android:name=".base.BaseActivity"></activity>
         <activity android:name=".LoginActivity"></activity>
         <activity android:name=".SampleListActivity1"></activity>
         <activity android:name=".SampleTabActivity">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".TestActivity">
            <!-- <intent-filter>
@@ -48,6 +48,7 @@
                   <!--<category android:name="android.intent.category.LAUNCHER" />-->
               <!--</intent-filter>-->
         </activity>
+        <activity android:name=".banner.BannerActivity"></activity>
     </application>
 
 </manifest>

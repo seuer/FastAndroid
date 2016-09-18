@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -46,20 +47,26 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
 
     }
 
-    protected  void setUpContentView(){
+    protected void setUpContentView() {
 
-    };
+    }
 
-
-    protected  void setUpView(){
-
-    };
+    ;
 
 
-    protected  void setUpData(){
+    protected void setUpView() {
+
+    }
+
+    ;
 
 
-    };
+    protected void setUpData() {
+
+
+    }
+
+    ;
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
@@ -112,12 +119,10 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
             toolbar.getMenu().clear();
             if (menuId > 0) {
                 toolbar.inflateMenu(menuId);
-                toolbar.setOnMenuItemClickListener(this);
+
             }
         }
     }
-
-
 
 
     protected void kickOut() {
@@ -132,5 +137,8 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
         startActivity(intent);
     }
 
-
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        return false;
+    }
 }

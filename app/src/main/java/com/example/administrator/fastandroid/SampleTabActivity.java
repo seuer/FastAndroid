@@ -56,6 +56,6 @@ public class SampleTabActivity extends BaseActivity implements TabBottomNavLayou
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        return false;
+        return super.onMenuItemClick(item);
     }
 }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.administrator.fastandroid.banner.BannerActivity;
 import com.example.administrator.fastandroid.base.BaseActivity;
 import com.example.administrator.fastandroid.base.BaseListActivity;
 import com.example.administrator.fastandroid.base.BaseViewHolder;
@@ -24,23 +25,16 @@ import java.util.ArrayList;
  * Created by Administrator
  * on 2016/8/1 17:01
  */
-public class HomeActivity extends BaseListActivity<Module>  {
+public class HomeActivity extends BaseListActivity<Module> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        }
+    }
 
     @Override
     protected void setUpTitle(int titleResId) {
         super.setUpTitle(R.string.activity_home);
     }
-
-    @Override
-    protected void setUpMenu(int menuId) {
-        super.setUpMenu(R.menu.menu_home);
-    }
-
-
 
 
     @Override
@@ -53,17 +47,17 @@ public class HomeActivity extends BaseListActivity<Module>  {
 
     @Override
     protected BaseViewHolder getViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_home_item,parent,false);
-        return  new ViewHolder(view);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_home_item, parent, false);
+        return new ViewHolder(view);
 
     }
 
-    private  class ViewHolder extends  BaseViewHolder{
-        private  final TextView label;
+    private class ViewHolder extends BaseViewHolder {
+        private final TextView label;
 
-        public  ViewHolder(View view){
+        public ViewHolder(View view) {
             super(view);
-            label=(TextView)view.findViewById(R.id.mHomeItemModuleLabel);
+            label = (TextView) view.findViewById(R.id.mHomeItemModuleLabel);
         }
 
         @Override
@@ -73,7 +67,7 @@ public class HomeActivity extends BaseListActivity<Module>  {
 
         @Override
         public void onBindViewHolder(int position) {
-             label.setText(mDataList.get(position).moduleName);
+            label.setText(mDataList.get(position).moduleName);
         }
     }
 
@@ -103,23 +97,22 @@ public class HomeActivity extends BaseListActivity<Module>  {
     }
 
 
-
     @Override
     public void onRefresh(int action) {
-         mDataList=new ArrayList<>();
-         mDataList.add(new Module("RecyclerView基于BaseListActivity\n支持下拉刷新,加载更多", SampleListActivity.class));
-         mDataList.add(new Module("RecyclerView基于BaseListFragment\n支持下拉刷新,加载更多", SampleListActivity1.class));
-         recycler.onRefreshCompleted();
+        try {
+            mDataList = new ArrayList<>();
+            mDataList.add(new Module("RecyclerView基于BaseListActivity\n支持下拉刷新,加载更多", SampleListActivity.class));
+            mDataList.add(new Module("RecyclerView基于BaseListFragment\n支持下拉刷新,加载更多", SampleListActivity1.class));
+            mDataList.add(new Module("banner", BannerActivity.class));
+            recycler.onRefreshCompleted();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_about:
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.stay4it.com/course/7"));
-                startActivity(intent);
-                break;
-        }
-        return true;
+        return super.onMenuItemClick(item);
     }
 }
