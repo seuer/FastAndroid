@@ -51,7 +51,7 @@ public class BannerView extends RelativeLayout implements ViewPager.OnPageChange
         LayoutInflater.from(getContext()).inflate(R.layout.activity_banner_layout, this);
         viewPager = (ViewPager) findViewById(R.id.banner_viewpager);
         viewPager.addOnPageChangeListener(this);
-        dotView = (DotView) findViewById(R.id.banner_viewpager);
+        dotView = (DotView) findViewById(R.id.banner_dotview);
     }
 
     public void setUpData(ArrayList<Banner> banners, OnBannerItemClickListener listener) {

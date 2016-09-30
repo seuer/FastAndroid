@@ -22,7 +22,7 @@ public class BannerActivity extends BaseActivity implements  BannerView.OnBanner
 
     @Override
     protected void setUpView() {
-       mBannerView= (BannerView) findViewById(R.id.banner_view);
+     mBannerView= (BannerView) findViewById(R.id.banner_view);
 
     }
 
@@ -48,12 +48,7 @@ public class BannerActivity extends BaseActivity implements  BannerView.OnBanner
         mBannerView.onStop();
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mBannerView.ondestory();
 
-    }
 
     @Override
     public void setOnBannerClick(int index, BannerView.Banner banner) {
