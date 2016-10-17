@@ -103,7 +103,7 @@ public class HomeActivity extends BaseListActivity<Module> {
             mDataList = new ArrayList<>();
             mDataList.add(new Module("RecyclerView基于BaseListActivity\n支持下拉刷新,加载更多", SampleListActivity.class));
             mDataList.add(new Module("RecyclerView基于BaseListFragment\n支持下拉刷新,加载更多", SampleListActivity1.class));
-            mDataList.add(new Module("banner", BannerActivity.class));
+           // mDataList.add(new Module("banner", BannerActivity.class));
             recycler.onRefreshCompleted();
         }catch (Exception e){
             e.printStackTrace();
