@@ -14,5 +14,10 @@
         android:gravity="center"
         android:text="我来了" />
 
+    <ImageView
+    android:id="@+id/mSampleListItemImg"
+    android:layout_width="match_parent"
+    android:layout_height="132dp" />
+
 
 </LinearLayout>
